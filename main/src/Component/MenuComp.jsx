@@ -39,7 +39,7 @@ export default function MenuComp() {
     .filter(section => section.items.length > 0);
 
   return (
-    <div className="px-4 py-10 max-w-screen-xl mx-auto">
+    <div className="px-4 max-w-screen-xl mx-auto">
       {/* Search */}
       <div className="mb-6 flex justify-center">
         <input

@@ -21,12 +21,12 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-[var(--color-cream-white)] text-[var(--color-slate-black)] relative">
+      <div className="min-h-screen flex flex-col bg-[var(--color-cream-white)] text-[var(--color-slate-black)]">
         {/* Navigation */}
         <TopNav />
 
         {/* Main Content */}
-        <main className="flex-grow pb-24 ">
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
