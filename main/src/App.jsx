@@ -1,0 +1,52 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Menu from "./Pages/Menu";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import Cart from "./Pages/Cart";
+import Beverages from "./Pages/Beverages";
+
+import TopNav from "./Component/Navigation/TopNav";
+import BottomNav from "./Component/Navigation/BottomNav";
+import FloatingCartIndicator from "./Component/FloatingCartIndicator";
+import useCartStore from "./Zustand/useCartStore";
+
+import "./App.css";
+
+function App() {
+  const { cart } = useCartStore();
+
+  // Get total quantity for FloatingCartIndicator
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col bg-[var(--color-cream-white)] text-[var(--color-slate-black)] relative">
+        {/* Navigation */}
+        <TopNav />
+
+        {/* Main Content */}
+        <main className="flex-grow pb-24 ">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/beverages" element={<Beverages />} />
+          </Routes>
+        </main>
+
+        {/* Bottom Nav */}
+        <BottomNav />
+
+        {/* Floating Cart Indicator */}
+        {cartCount > 0 && (
+          <FloatingCartIndicator cartCount={cartCount} />
+        )}
+      </div>
+    </Router>
+  );
+}
+
+export default App;
