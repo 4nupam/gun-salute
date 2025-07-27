@@ -8,7 +8,7 @@ function Home() {
   const Features = Data.restaurant.features;
 
   return (
-    <section className="flex flex-col items-start w-full">
+    <section className="flex flex-col mb-20 items-start w-full">
       {/* Hero Section */}
       <HeroSection />
 

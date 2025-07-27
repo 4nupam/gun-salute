@@ -10,10 +10,14 @@ import BottomNav from "./Component/Navigation/BottomNav";
 import FloatingCartIndicator from "./Component/FloatingCartIndicator";
 import useCartStore from "./Zustand/useCartStore";
 import OfflineNotice from "./Component/OfflineNotice";
+import swDev from "./swDev.js";
 import "./App.css";
 
 
 import { registerSW } from 'virtual:pwa-register';
+import { useEffect } from "react";
+
+
 
 registerSW({
   onNeedRefresh() {
@@ -27,13 +31,15 @@ registerSW({
 function App() {
   const { cart } = useCartStore();
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-
+useEffect(()=>{
+swDev()
+},[])
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-[var(--color-cream-white)] text-[var(--color-slate-black)]">
         <TopNav />
           
-        <main className="flex-grow">
+        <main className="flex-grow mb-12">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />

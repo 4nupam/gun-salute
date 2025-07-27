@@ -52,7 +52,7 @@ function BookDining() {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="relative w-full flex items-center justify-center">
+    <div className="relative mb-20 w-full flex items-center justify-center">
       <div className="max-w-3xl mx-auto p-6  rounded-lg mt-10">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Book Your Dining</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
