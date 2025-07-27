@@ -5,27 +5,34 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Cart from "./Pages/Cart";
 import Beverages from "./Pages/Beverages";
-
 import TopNav from "./Component/Navigation/TopNav";
 import BottomNav from "./Component/Navigation/BottomNav";
 import FloatingCartIndicator from "./Component/FloatingCartIndicator";
 import useCartStore from "./Zustand/useCartStore";
-
+import OfflineNotice from "./Component/OfflineNotice";
 import "./App.css";
+
+
+import { registerSW } from 'virtual:pwa-register';
+
+registerSW({
+  onNeedRefresh() {
+    console.log('New content available, click to update.');
+  },
+  onOfflineReady() {
+    console.log('App ready to work offline.');
+  },
+});
 
 function App() {
   const { cart } = useCartStore();
-
-  // Get total quantity for FloatingCartIndicator
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-[var(--color-cream-white)] text-[var(--color-slate-black)]">
-        {/* Navigation */}
         <TopNav />
-
-        {/* Main Content */}
+          
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -36,14 +43,10 @@ function App() {
             <Route path="/beverages" element={<Beverages />} />
           </Routes>
         </main>
-
-        {/* Bottom Nav */}
+         {/* Offline Notification */}
+        <OfflineNotice />
         <BottomNav />
-
-        {/* Floating Cart Indicator */}
-        {cartCount > 0 && (
-          <FloatingCartIndicator cartCount={cartCount} />
-        )}
+        {cartCount > 0 && <FloatingCartIndicator cartCount={cartCount} />}
       </div>
     </Router>
   );
