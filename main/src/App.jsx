@@ -38,7 +38,8 @@ swDev()
     <Router>
       <div className="min-h-screen flex flex-col bg-[var(--color-cream-white)] text-[var(--color-slate-black)]">
         <TopNav />
-          
+               {/* Offline Notification */}
+        <OfflineNotice />
         <main className="flex-grow mb-12">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -49,8 +50,7 @@ swDev()
             <Route path="/beverages" element={<Beverages />} />
           </Routes>
         </main>
-         {/* Offline Notification */}
-        <OfflineNotice />
+    
         <BottomNav />
         {cartCount > 0 && <FloatingCartIndicator cartCount={cartCount} />}
       </div>
